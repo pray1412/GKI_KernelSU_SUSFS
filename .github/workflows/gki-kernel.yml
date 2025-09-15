@@ -305,7 +305,7 @@ jobs:
             echo "Applying SUSFS patches for Official KernelSU..."
             cd ./KernelSU
             cp ../../susfs4ksu/kernel_patches/KernelSU/10_enable_susfs_for_ksu.patch ./ 
-            patch -p1 --forward --fuzz=3 < 10_enable_susfs_for_ksu.patch || true
+            patch -p1 --forward < 10_enable_susfs_for_ksu.patch || true
             cp ../../zzh_patch/mksu_ksud.patch ./
             patch -p1 --fuzz=3 < mksu_ksud.patch
 
@@ -333,8 +333,9 @@ jobs:
             cd ./KernelSU
 
             cp ../../susfs4ksu/kernel_patches/KernelSU/10_enable_susfs_for_ksu.patch ./
-            patch -p1 --forward --fuzz=3 < 10_enable_susfs_for_ksu.patch || true
+            patch -p1 --forward < 10_enable_susfs_for_ksu.patch || true
 
+            echo "Applying MKSU specific patches..."
             cp ../../zzh_patch/mksu_core_hook.c.patch ./
             cp ../../zzh_patch/mksu_ksud.patch ./
             patch -p1 --fuzz=3 < mksu_core_hook.c.patch
